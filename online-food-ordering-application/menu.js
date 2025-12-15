@@ -3,16 +3,22 @@ const PRICE = 10;
 let currentUser = sessionStorage.getItem("user");
 
 if (!currentUser) {
-  alert("Plz logic ");
+  alert("Please login ");
   window.location.href = "login.html";
 }
 
-function searchItemData() {
-  let mid = document.getElementById("mid").value;
-  fetch("https://dummyjson.com/recipes/" + mid)
+let h1 = document.createElement("p");
+let h1TagValue = document.createTextNode("Current user: " + currentUser);
+h1.appendChild(h1TagValue);
+document.getElementById("user").appendChild(h1);
+
+function loadData() {
+  let searchItem = document.getElementById("searchItem").value;
+
+  fetch("https://dummyjson.com/recipes/search?q=" + searchItem)
     .then((res) => res.json())
-    .then((result) => console.log(result))
-    .catch((error) => console.log(error));
+    .then((result) => renderItems(result.recipes))
+    .catch((error) => alert(error));
 }
 function showCartData() {
   //console.log(cartInfo.length)
@@ -38,59 +44,48 @@ function showCartData() {
         `;
   });
 }
-// function renderCartDetails(itemInCart,index) {
-//         console.log(itemInCart+""+index)
-//         cartInfo
-// }
+
 function updateQty(index, change) {
   console.log("event called.");
   cartInfo[index].qty += change;
   console.log(cartInfo);
   showCartData();
 }
-function loadFakeData() {
-  let h1 = document.createElement("p");
-  let user = sessionStorage.getItem("user");
-  let h1TagValue = document.createTextNode(user);
-  h1.appendChild(h1TagValue);
-  document.getElementById("user").appendChild(h1);
+
+function renderItems(items) {
   hideAll();
   document.getElementById("menu-item").style.display = "flex";
+  document.getElementById("menu-item").innerHTML = "";
+  items.forEach((menu) => {
+    let div = document.createElement("div");
 
-  fetch("https://dummyjson.com/recipes")
-    .then((res) => res.json())
-    .then((result) => {
-      result.recipes.forEach((menu) => {
-        let div = document.createElement("div");
+    div.className = "flex p-2 m-4 ";
 
-        div.className = "flex p-2 m-4 ";
+    let img = document.createElement("img");
+    img.src = menu.image;
+    img.className = "w-50 m-4 p-3 text-center bg-white";
 
-        let img = document.createElement("img");
-        img.src = menu.image;
-        img.className = "w-50 m-4 p-3 text-center bg-white";
+    let p = document.createElement("p");
+    p.innerText = menu.name;
 
-        let p = document.createElement("p");
-        p.innerText = menu.name;
+    div.appendChild(img);
+    div.appendChild(p);
 
-        div.appendChild(img);
-        div.appendChild(p);
+    img.addEventListener("click", () => {
+      console.log(menu.name);
+      let result = cartInfo.find((cartItem) => cartItem.name == menu.name);
+      if (result == undefined) {
+        cartInfo.push({ name: menu.name, qty: 1, price: PRICE });
+        let cartBadge = document.getElementById("cartBadge");
+        cartBadge.innerHTML = cartInfo.length;
 
-        img.addEventListener("click", () => {
-          console.log(menu.name);
-          let result = cartInfo.find((cartItem) => cartItem.name == menu.name);
-          if (result == undefined) {
-            cartInfo.push({ name: menu.name, qty: 1, price: PRICE });
-
-            alert("Item Added in cart");
-          } else {
-            alert("Item already present in cart");
-          }
-        });
-        //div.appendChild(divContent);
-        //document.getElementsByTagName("body")[0].appendChild(div)
-        document.getElementById("menu-item").appendChild(div);
-      });
+        alert("Item Added in cart");
+      } else {
+        alert("Item already present in cart");
+      }
     });
+    document.getElementById("menu-item").appendChild(div);
+  });
 }
 
 function hideAll() {

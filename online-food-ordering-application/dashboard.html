@@ -4,32 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="menu.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body onload="loadFakeData()" class="bg-gray-100 min-h-screen">
-    <span id="user"></span>
-    <button type="button" onclick="logout()">Logout</button>
-    <div class="flex flex-col p-8">
-      <div class="">
-        <input
-          type="button"
-          value="Show Cart Details"
-          onclick="showCartData()"
-        />
-        <input type="button" value="Show Product" onclick="loadFakeData()" />
-        Search Item Menu
-        <input type="number" id="mid" onkeyup="searchItemData()" />
-        <button onclick="loadFakeData()">Menu Item</button>
+  <body onload="loadData()" class="min-h-screen">
+    <div class="max-w-7xl mx-auto bg-gray-100">
+      <div class="flex justify-between p-6">
+        <div class="font-bold text-4xl">Online food ordering</div>
+        <div class="flex items-center">
+          <span class="mr-4" id="user"></span>
+          <button
+            class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition"
+            type="button"
+            onclick="logout()"
+          >
+            Logout
+          </button>
+        </div>
       </div>
+      <div class="flex flex-col p-8">
+        <div class="p-4 flex items-center justify-between">
+          <div>
+            <input
+              class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+              type="text"
+              id="searchItem"
+              placeholder="Search recipe..."
+              onkeyup="loadData()"
+            />
+          </div>
+          <input type="button" value="Show Product" onclick="loadData()" />
+          <button class="px-4 py-2 rounded-lg border" onclick="showCartData()">
+            Cart
+            <span
+              class="rounded-full bg-blue-500 text-white px-1"
+              id="cartBadge"
+            >
+              0
+            </span>
+          </button>
+        </div>
 
-      <div class="flex-1">
-        <div id="menu-item" class="flex flex-wrap"></div>
+        <div class="flex-1">
+          <div id="menu-item" class="flex flex-wrap"></div>
 
-        <div id="cart-item"></div>
+          <div id="cart-item"></div>
 
-        <div id="view-orders"></div>
+          <div id="view-orders"></div>
+        </div>
       </div>
     </div>
+    <script src="menu.js"></script>
   </body>
 </html>
