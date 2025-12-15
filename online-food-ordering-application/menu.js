@@ -53,26 +53,38 @@ function updateQty(index, change) {
 }
 
 function renderItems(items) {
-  hideAll();
+  hideCart();
   document.getElementById("menu-item").style.display = "flex";
   document.getElementById("menu-item").innerHTML = "";
   items.forEach((menu) => {
     let div = document.createElement("div");
 
-    div.className = "flex p-2 m-4 ";
+    div.className =
+      "flex flex-col p-2 m-4 shadow-xl rounded-lg w-full sm:w-1/3 md:w-1/4";
 
     let img = document.createElement("img");
     img.src = menu.image;
-    img.className = "w-50 m-4 p-3 text-center bg-white";
+    img.className = "m-4";
 
     let p = document.createElement("p");
+    p.className = "text-center";
     p.innerText = menu.name;
+
+    let price = document.createElement("p");
+    price.className = "text-center mb-2";
+    price.innerText = "Price: " + PRICE;
+
+    let addToCart = document.createElement("button");
+    addToCart.className =
+      "w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition";
+    addToCart.innerText = "Add to cart";
 
     div.appendChild(img);
     div.appendChild(p);
+    div.appendChild(price);
+    div.appendChild(addToCart);
 
-    img.addEventListener("click", () => {
-      console.log(menu.name);
+    addToCart.addEventListener("click", () => {
       let result = cartInfo.find((cartItem) => cartItem.name == menu.name);
       if (result == undefined) {
         cartInfo.push({ name: menu.name, qty: 1, price: PRICE });
@@ -88,7 +100,7 @@ function renderItems(items) {
   });
 }
 
-function hideAll() {
+function hideCart() {
   document.getElementById("cart-item").style.display = "none";
 }
 

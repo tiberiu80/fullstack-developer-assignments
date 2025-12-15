@@ -7,11 +7,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body onload="loadData()" class="min-h-screen">
-    <div class="max-w-7xl mx-auto bg-gray-100">
-      <div class="flex justify-between p-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex justify-between p-4">
         <div class="font-bold text-4xl">Online food ordering</div>
         <div class="flex items-center">
-          <span class="mr-4" id="user"></span>
+          <span class="mr-4 text-blue-500" id="user"></span>
           <button
             class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition"
             type="button"
@@ -21,19 +21,29 @@
           </button>
         </div>
       </div>
-      <div class="flex flex-col p-8">
-        <div class="p-4 flex items-center justify-between">
-          <div>
+      <div class="flex flex-col p-4">
+        <div
+          class="p-4 flex flex-col md:flex-row items-center justify-between bg-gray-100 rounded-lg"
+        >
+          <div class="flex flex-col md:flex-row items-center">
             <input
-              class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+              class="px-4 py-2 border border-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 bg-white mb-2 md:mb-0 mr-0 md:mr-3"
               type="text"
               id="searchItem"
               placeholder="Search recipe..."
               onkeyup="loadData()"
             />
+            <button
+              class="px-4 py-2 rounded-lg border border-red-500 text-red-500 mb-2 md:mb-0"
+              onclick="loadData()"
+            >
+              Recipes
+            </button>
           </div>
-          <input type="button" value="Show Product" onclick="loadData()" />
-          <button class="px-4 py-2 rounded-lg border" onclick="showCartData()">
+          <button
+            class="px-4 py-2 rounded-lg border border-red-500 text-red-500"
+            onclick="showCartData()"
+          >
             Cart
             <span
               class="rounded-full bg-blue-500 text-white px-1"
@@ -45,7 +55,7 @@
         </div>
 
         <div class="flex-1">
-          <div id="menu-item" class="flex flex-wrap"></div>
+          <div id="menu-item" class="flex flex-wrap justify-center"></div>
 
           <div id="cart-item"></div>
 
