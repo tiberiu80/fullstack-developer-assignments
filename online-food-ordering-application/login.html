@@ -10,19 +10,64 @@
   <body>
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2">
-        <div class="bg-gray-200">
-          <form action="dashboard.html" onsubmit="return validate()">
-            <label>EmailId</label>
-            <input type="email" name="email" id="emailId" required />
-            <input type="submit" value="SignIn" />
-          </form>
+        <div class="bg-gray-100 flex flex-col justify-center">
+          <div class="p-8">
+            <h3 class="text-amber-500 text-4xl mb-8">Login</h3>
+            <h4 class="text-2xl font-bold mb-2">Welcome back!</h4>
+            <p class="mb-10">
+              Enter your email address and password to access dashboard
+            </p>
+            <form action="dashboard.html" onsubmit="return validate()">
+              <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Email</label
+                >
+                <input
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  type="email"
+                  placeholder="you@example.com"
+                  name="email"
+                  id="emailId"
+                  required
+                />
+              </div>
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Password</label
+                >
+                <input
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="*************"
+                  type="password"
+                  name="password"
+                  id="passwordId"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+              >
+                Sign In
+              </button>
+            </form>
+          </div>
         </div>
 
         <div
           class="bg-gray-300 bg-cover bg-center h-screen"
           style="background-image: url('assets/food.png')"
         >
-          <!-- <img class="h-screen" src="assets//food.png" alt="" /> -->
+          <div class="flex flex-col justify-center h-full">
+            <div>
+              <h1 class="text-white text-4xl text-center">
+                Online food ordering application
+              </h1>
+              <p class="text-white m-4 text-center text-2xl">
+                Best food application outhere!
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
