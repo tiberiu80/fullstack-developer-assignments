@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="validation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="bg-gray-200">
+          <form action="dashboard.html" onsubmit="return validate()">
+            <label>EmailId</label>
+            <input type="email" name="email" id="emailId" required />
+            <input type="submit" value="SignIn" />
+          </form>
+        </div>
+
+        <div
+          class="bg-gray-300 bg-cover bg-center h-screen"
+          style="background-image: url('assets/food.png')"
+        >
+          <!-- <img class="h-screen" src="assets//food.png" alt="" /> -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
