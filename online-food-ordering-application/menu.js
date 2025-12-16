@@ -61,6 +61,9 @@ function showCartData() {
                         <span>${item.qty}</span>
                         <button class="text-xl rounded-full px-2 ml-2 bg-gray-100 inline-block" onclick="updateQty(${i},1)">+</button>
                     </div>
+                    <div class="text-right">
+                        <button class="text-red-300 italic hover:underline" onclick="removeItemFromCart(${i})">Delete</button>
+                    </div>
                 </div>
             </div>
         `;
@@ -94,6 +97,13 @@ function updateQty(index, change) {
   }
   cartInfo[index].qty += change;
   console.log(cartInfo);
+  showCartData();
+}
+
+function removeItemFromCart(index) {
+  cartInfo.splice(index, 1);
+  let cartBadge = document.getElementById("cartBadge");
+  cartBadge.innerHTML = cartInfo.length;
   showCartData();
 }
 
