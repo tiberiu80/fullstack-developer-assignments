@@ -14,8 +14,6 @@ function validate() {
     (item) => item.email === email && item.password === password
   );
 
-  console.log("found user: ", user);
-
   if (user) {
     alert("successfully login");
     sessionStorage.setItem("user", user.email);
@@ -24,4 +22,9 @@ function validate() {
     alert("failure try once again");
     return false;
   }
+}
+
+function contactSubmit() {
+  alert("Message sent!");
+  return true;
 }
