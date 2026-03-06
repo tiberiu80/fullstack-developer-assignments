@@ -63,6 +63,20 @@
       "numberOfLeaves": "5",
       "reasonForLeave": "sick",
       "status": "rejected"
+    },
+    {
+      "id": "aed2",
+      "employeeEmail": "john@gmail.com",
+      "numberOfLeaves": "3",
+      "reasonForLeave": "not feeling well",
+      "status": "pending"
+    },
+    {
+      "id": "3725",
+      "employeeEmail": "john@gmail.com",
+      "numberOfLeaves": "6",
+      "reasonForLeave": "holidays",
+      "status": "pending"
     }
   ]
 }

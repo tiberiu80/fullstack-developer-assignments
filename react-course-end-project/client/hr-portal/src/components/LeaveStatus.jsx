@@ -9,7 +9,6 @@ function LeaveStatus() {
   const loadLeaves = async () => {
     try {
       const result = await viewLeaveDetails();
-      console.log("leaves: ", result);
       setLeaves(
         result.filter((leave) => leave.employeeEmail === employeeEmail),
       );
@@ -18,32 +17,49 @@ function LeaveStatus() {
     }
   };
 
-  console.log("employeeEmail: ", employeeEmail);
-  console.log("state leaves: ", leaves);
-
   useEffect(() => {
     loadLeaves();
   }, []);
 
   return (
-    <div>
-      <h3>View leave status</h3>
-      <table border={1}>
-        <thead>
+    <div className="mt-10">
+      <table className="min-w-full border border-gray-200 rounded-lg overflow-hidden">
+        <thead className="bg-gray-100">
           <tr>
-            <th>Employee Email</th>
-            <th>Number of Leaves</th>
-            <th>Reason for Leave</th>
-            <th>Status</th>
+            <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+              Employee Email
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+              Number of Leaves
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+              Reason for Leave
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+              Status
+            </th>
           </tr>
         </thead>
         <tbody>
-          {leaves.map((leave) => (
-            <tr key={leave.id}>
-              <td>{leave.employeeEmail}</td>
-              <td>{leave.numberOfLeaves}</td>
-              <td>{leave.reasonForLeave}</td>
-              <td>{leave.status}</td>
+          {leaves.map((leave, index) => (
+            <tr
+              key={leave.id}
+              className={`${
+                index % 2 === 0 ? "bg-white" : "bg-gray-50"
+              } hover:bg-blue-50 transition`}
+            >
+              <td className="px-6 py-4 text-sm text-gray-800">
+                {leave.employeeEmail}
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-800">
+                {leave.numberOfLeaves}
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-800">
+                {leave.reasonForLeave}
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-800">
+                {leave.status}
+              </td>
             </tr>
           ))}
         </tbody>

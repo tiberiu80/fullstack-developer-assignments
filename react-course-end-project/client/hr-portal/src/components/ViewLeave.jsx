@@ -29,26 +29,46 @@ function ViewLeave() {
     loadLeaves();
   }, [msg]);
   return (
-    <div>
-      <h1>View Leave</h1>
-      <table border={1}>
-        <thead>
+    <div className="mt-10">
+      <table className="min-w-full border border-gray-200 rounded-lg overflow-hidden">
+        <thead className="bg-gray-100">
           <tr>
-            <th>Employee Email</th>
-            <th>Number of Leaves</th>
-            <th>Reason for Leave</th>
+            <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+              Employee Email
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+              Number of Leaves
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+              Reason for Leave
+            </th>
 
-            <th>Approved</th>
-            <th>Rejected</th>
+            <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+              Approved
+            </th>
+            <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+              Rejected
+            </th>
           </tr>
         </thead>
         <tbody>
-          {leaves.map((leave) => (
-            <tr key={leave.id}>
-              <td>{leave.employeeEmail}</td>
-              <td>{leave.numberOfLeaves}</td>
-              <td>{leave.reasonForLeave}</td>
-              <td>
+          {leaves.map((leave, index) => (
+            <tr
+              key={leave.id}
+              className={`${
+                index % 2 === 0 ? "bg-white" : "bg-gray-50"
+              } hover:bg-blue-50 transition`}
+            >
+              <td className="px-6 py-4 text-sm text-gray-800">
+                {leave.employeeEmail}
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-800">
+                {leave.numberOfLeaves}
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-800">
+                {leave.reasonForLeave}
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-800">
                 <input
                   type="radio"
                   name={`status-${leave.id}`}
@@ -60,7 +80,7 @@ function ViewLeave() {
                   }
                 />
               </td>
-              <td>
+              <td className="px-6 py-4 text-sm text-gray-800">
                 <input
                   type="radio"
                   name={`status-${leave.id}`}
