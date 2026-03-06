@@ -29,7 +29,7 @@ function ApplyLeave() {
   };
   return (
     <div className="flex justify-center mt-10">
-      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+      <div className="bg-white p-8 w-full max-w-md">
         <h1 className="text-xl font-bold text-center mb-6">Apply Leave</h1>
         <form onSubmit={applyLeaveInfo}>
           <input
